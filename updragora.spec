@@ -1,5 +1,5 @@
 Name:           updragora
-Version:        0.1.0
+Version:        0.1.1
 Release:        1
 Summary:        Modern system updater and package manager for OpenMandriva
 Group:          System/Configuration/Packaging
@@ -27,7 +27,7 @@ polkit-authorized helper (auth_admin_keep), so the password is not
 requested for every action.
 
 %prep
-%autosetup -p1
+%autosetup
 
 %build
 # nothing to build - pure Python application
@@ -54,6 +54,9 @@ install -Dm644 data/org.tearsofmandrake.updragora.desktop \
 install -Dm644 updragora.png \
     %{buildroot}%{_datadir}/icons/hicolor/256x256/apps/updragora.png
 
+# in-app artwork
+install -Dm644 up-to-date.png %{buildroot}%{_datadir}/%{name}/up-to-date.png
+
 %files
 %doc README.md
 %{_bindir}/updragora
@@ -64,5 +67,11 @@ install -Dm644 updragora.png \
 %{_datadir}/icons/hicolor/256x256/apps/updragora.png
 
 %changelog
+* Sun Sep 06 2026 Tears of Mandrake <tears-of-mandrake> 0.1.1-1
+- Add clean cache & refresh button in the update module
+- Fix selective updates from the Install tab
+- Auto-select dependencies when picking packages to install
+- Fix up to date icon.
+
 * Thu Sep 04 2026 Tears of Mandrake <tears-of-mandrake> 0.1.0-1
 - Initial package
